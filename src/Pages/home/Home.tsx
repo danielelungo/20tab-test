@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import styled from "styled-components"
 import { useFetch } from "../../Hooks/useFetch/useFetch"
 import { Todo } from "../../Types/Todo"
 
@@ -14,8 +15,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (results.length) {
-      setTodos(results.slice(0, 10))
-      //.slice(0, 10)
+      setTodos(results)
     }
   }, [results])
 
@@ -27,7 +27,6 @@ const Home: FC = () => {
 
   const handleOnClickTodo = (id: number) => {
     navigate(`/todo/${id}`)
-    //router.push("/todo/" + id)
   }
 
   const handleOnClickDelete = (id: number) => {
@@ -37,31 +36,31 @@ const Home: FC = () => {
   return (
     <div>
       <main>
-        <input
+        <Input
           value={search}
           onChange={handleOnChangeInput}
           placeholder="Search todo..."
           aria-label="todo-input"
         />
         {loading ? (
-          <div>loading..</div>
+          <h1>loading..</h1>
         ) : error ? (
-          <div>{error}</div>
+          <h1>{error}</h1>
         ) : (
           todos.filter(filterOnINput).map(({ id, title, completed }) => (
-            <div key={id}>
+            <Item key={id}>
               <div onClick={() => handleOnClickTodo(id)}>
-                <p>{title}</p>
+                <Paragraph>{title}</Paragraph>
                 {completed ? (
                   <span role="img" aria-label="emote">
                     ✅
                   </span>
                 ) : null}
               </div>
-              <button data-testid={`close-btn-${id}`} onClick={() => handleOnClickDelete(id)}>
+              <Button data-testid={`close-btn-${id}`} onClick={() => handleOnClickDelete(id)}>
                 Delete
-              </button>
-            </div>
+              </Button>
+            </Item>
           ))
         )}
       </main>
@@ -70,3 +69,30 @@ const Home: FC = () => {
 }
 
 export default Home
+
+const Input = styled.input`
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 50%;
+  color: black;
+  border: 1px solid black;
+  margin-top: 1rem;
+`
+const Button = styled.button`
+  color: red;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: 1rem;
+`
+const Paragraph = styled.p`
+  padding: 0.5rem;
+`
+
+const Item = styled.div`
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  margin-left: 5%;
+  margin-right: 5%;
+`
