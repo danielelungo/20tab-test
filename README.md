@@ -1,3 +1,10 @@
+# Things I modified:
+
+I preferred to move the logic of the api call to a custom hook so that it is reusable and testable better.
+This way you can go and modify only one state in the component.
+
+I also changed the style of the component so that it was better viewable.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
