@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Componennt match Home Page SnapShot 1`] = `
+<div>
+  <main>
+    <input
+      aria-label="todo-input"
+      onChange={[Function]}
+      placeholder="Search todo..."
+      value=""
+    />
+    <div>
+      loading..
+    </div>
+  </main>
+</div>
+`;
