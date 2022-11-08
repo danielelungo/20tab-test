@@ -23,7 +23,9 @@ const Home: FC = () => {
     setSearch(e.target.value)
   }
 
-  const filterOnINput = (todo: Todo) => todo.title.toLowerCase().includes(search.toLowerCase())
+  const todosFiltered = todos.filter((todo: Todo) =>
+    todo.title.toLowerCase().includes(search.toLowerCase())
+  )
 
   const handleOnClickTodo = (id: number) => {
     navigate(`/todo/${id}`)
@@ -47,7 +49,7 @@ const Home: FC = () => {
         ) : error ? (
           <h1>{error}</h1>
         ) : (
-          todos.filter(filterOnINput).map(({ id, title, completed }) => (
+          todosFiltered.map(({ id, title, completed }) => (
             <Item key={id}>
               <div onClick={() => handleOnClickTodo(id)}>
                 <Paragraph>{title}</Paragraph>
@@ -63,6 +65,7 @@ const Home: FC = () => {
             </Item>
           ))
         )}
+        {todosFiltered.length < 1 && search && <h1>No result found with "{search}"</h1>}
       </main>
     </div>
   )
