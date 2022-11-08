@@ -14,12 +14,12 @@ const MockHome = () => {
   )
 }
 
-describe("Home Componennt", () => {
+describe("Home Component", () => {
   test("match Home Page SnapShot", () => {
     const tree = renderer.create(<MockHome />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  describe("input", () => {
+  describe("input test", () => {
     test("input is in the page", () => {
       render(<MockHome />)
       const inputElement = screen.getByPlaceholderText(/search todo.../i)
@@ -39,7 +39,7 @@ describe("Home Componennt", () => {
       await waitForElementToBeRemoved(() => screen.getByText(/loading/i))
       mockData.forEach((d) => expect(screen.getByText(d.title)).toBeInTheDocument())
     })
-    test("remove todo from list", async () => {
+    test("should remove todo from list", async () => {
       render(<MockHome />)
       await waitForElementToBeRemoved(() => screen.getByText(/loading/i))
       fireEvent.click(screen.getByTestId("close-btn-2"))
