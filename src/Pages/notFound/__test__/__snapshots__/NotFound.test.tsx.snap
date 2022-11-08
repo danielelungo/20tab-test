@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound component rmatch NotFound SnapShot 1`] = `
+<div>
+  <h1>
+    404: Page Non Found
+  </h1>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    Go Back To Home Page
+  </a>
+</div>
+`;
